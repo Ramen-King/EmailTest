@@ -14,7 +14,7 @@ crud.create = (file,data) => {
     fs.open(`${crud.baseDir}/${file}.txt`, 'wx', function(error, identifier) {
         if(!error && identifier) {
             let date = new Date()
-
+            
             // let jsonArray = [];
             // jsonArray.push(data);
             // let stringData = JSON.stringify(jsonArray, null, 3);
@@ -36,16 +36,16 @@ crud.create = (file,data) => {
         }
     })
 }
-/***************************************/
-// crud.create('test')
-crud.read()
+
+//crud.create('test')
+
 
 
 /**
  * READ
  */
 crud.read = (file) => {
-    fs.readFile(`${crud.baseDir}/${file}.json`, 'utf8', (err,data) => {
+    fs.readFile(`${crud.baseDir}/${file}.txt`, 'utf8', (err,data) => {
         if(err) {
             throw err
         } else {
@@ -53,7 +53,7 @@ crud.read = (file) => {
         }
     })
 }
-
+crud.read('test')
 crud.update = (file, data) => {
     //readFile returns Promise
     readFile(`${crud.baseDir}/${file}.json`, "utf8")
