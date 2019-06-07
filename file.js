@@ -53,25 +53,26 @@ crud.read = (file) => {
         }
     })
 }
-crud.read('test')
+//crud.read('test')
 crud.update = (file, data) => {
     //readFile returns Promise
-    readFile(`${crud.baseDir}/${file}.json`, "utf8")
+    readFile(`${crud.baseDir}/${file}.txt`, "utf8")
         .then(newStream => {
-            //change string to JS object
-            let newData = JSON.parse(newStream)
-
+            //let newData = JSON.parse(newStream)
+            
             //push our update to array
-            newData.push(data)
-
+            //newData.push(data)
+            
             //return data as a string
-            return JSON.stringify(newData, null, 3)
+            //return JSON.stringify(newData, null, 3)
+            let updated = data
+            return `${updated}${newStream}`
         })
         .then(finalData => {
             // replace the content in the file with updated data
-            fs.truncate(`${crud.baseDir}/${file}.json`, (error) => {
+            fs.truncate(`${crud.baseDir}/${file}.txt`, (error) => {
                 if(!error) {
-                    fs.writeFile(`${crud.baseDir}/${file}.json`, finalData, (err) => {
+                    fs.writeFile(`${crud.baseDir}/${file}.txt`, finalData, (err) => {
                         if(err) {
                             return err
                         }
@@ -82,6 +83,7 @@ crud.update = (file, data) => {
             })
         })
 }
+//crud.update('test', 'Update')
 // crud.create('cars-updated', {'name': 'mercedes', 'price': '$400'})
 // crud.update('cars-updated', {'name': 'toyota', 'price': '$550'})
 //crud.read('cars-updated')
