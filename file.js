@@ -11,14 +11,15 @@ crud.baseDir = path.join(__dirname,'./database');
  * CREATE
  */
 crud.create = (file,data) => {
-    fs.open(`${crud.baseDir}/${file}.json`, 'wx', function(error, identifier) {
+    fs.open(`${crud.baseDir}/${file}.txt`, 'wx', function(error, identifier) {
         if(!error && identifier) {
-            let jsonArray = [];
-            jsonArray.push(data);
+            let date = new Date()
 
-            let stringData = JSON.stringify(jsonArray, null, 3);
+            // let jsonArray = [];
+            // jsonArray.push(data);
+            // let stringData = JSON.stringify(jsonArray, null, 3);
 
-            fs.writeFile(identifier, stringData, (err) => {
+            fs.writeFile(identifier, date, (err) => {
                 if(!err) {
                     fs.close(identifier, (err) => {
                         if(err) {
@@ -35,9 +36,9 @@ crud.create = (file,data) => {
         }
     })
 }
-
-crud.create('cars', {"name": "Ford", "price": "$3000"})
-
+/***************************************/
+// crud.create('test')
+crud.read()
 
 
 /**
@@ -83,7 +84,7 @@ crud.update = (file, data) => {
 }
 // crud.create('cars-updated', {'name': 'mercedes', 'price': '$400'})
 // crud.update('cars-updated', {'name': 'toyota', 'price': '$550'})
-crud.read('cars-updated')
+//crud.read('cars-updated')
 // crud.update('cars', {'name': 'Tesla', 'price': "$20000"})
 
 
@@ -101,4 +102,4 @@ crud.delete = (file) => {
     })
 }
 
-crud.delete('cars')
+//crud.delete('cars')
