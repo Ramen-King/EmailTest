@@ -1,22 +1,30 @@
-const handleFile = require('./crud')//?
-const events = require('events')//?
-const eventEmitter = new events.EventEmitter()//?
-
+const handleFile = require("./crud"); //?
+const events = require("events"); //?
+const eventEmitter = new events.EventEmitter(); 
+const util = require('util')
+const setTimeoutPromise = util.promisify(setTimeout);
 
 let myEventHandler = () => {
-   // handleFile.create('test')
-    //handleFile.read('test')
-    handleFile.update('test', `UPDATED ${new Date}`)
-    //handleFile.delete('test-updated')
-    //console.log('hello')
-}
+    // maybe async would be a better approach... 
+    handleFile.create('test', `Hello world, it is ${new Date}`);
+    setTimeoutPromise(2000)
+        .then(() => handleFile.read('test'))
+        .catch(() => console.log(err))
+    setTimeoutPromise(2000)
+        .then(() => handleFile.update('test', `UPDATED ${new Date}`))
+        .catch((err) => console.log(err))
+    setTimeoutPromise(5000)    
+        .then(() => handleFile.delete('test'))
+        .catch(() => console.log(err))
+    
+};
 
-eventEmitter.on('scream', myEventHandler)
+eventEmitter.on("scream", myEventHandler);
 
-const callEmit = () => {
- return eventEmitter.emit('scream')
-}
+const theForce = () => {
+  return eventEmitter.emit("scream");
+};
 
-module.exports.myEventHandler = myEventHandler
+module.exports.myEventHandler = myEventHandler;
 
-module.exports.callEmit = callEmit
+module.exports.theForce = theForce;
