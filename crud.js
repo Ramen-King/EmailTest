@@ -36,6 +36,7 @@ crud.read = file => {
     if (err) {
       throw err;
     } else {
+      email.sendNotification(`${file} has been read on ${date}`);
       console.log(`Contains: ${data}`);
     }
   });
