@@ -4,10 +4,10 @@ const eventEmitter = new events.EventEmitter()//?
 
 
 let myEventHandler = () => {
-    handleFile.update('test')
-    // handleFile.read('test')
-    // handleFile.update('test')
-    // handleFile.delete('test-updated')
+   // handleFile.create('test')
+    //handleFile.read('test')
+    handleFile.update('test', `UPDATED ${new Date}`)
+    //handleFile.delete('test-updated')
     //console.log('hello')
 }
 
