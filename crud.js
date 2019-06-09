@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const email = require("./nodemailer");
+const email = require("./_nodemailer");
 const { promisify } = require("util");
 const readFile = promisify(fs.readFile);
 
@@ -46,8 +46,7 @@ crud.read = file => {
 crud.update = (file, data) => {
   readFile(`${crud.baseDir}/${file}.txt`, "utf8")
     .then(() => {
-      
-      return data
+      return data;
     })
     .then(finalData => {
       fs.truncate(`${crud.baseDir}/${file}.txt`, error => {
@@ -59,9 +58,7 @@ crud.update = (file, data) => {
             email.sendNotification(
               `${file}.txt has been updated on ${new Date()} `
             );
-            console.log(
-              `Update Sucess: ${file}.txt has been updated. `
-            );
+            console.log(`Update Sucess: ${file}.txt has been updated. `);
           });
         } else {
           return error;
@@ -73,7 +70,9 @@ crud.update = (file, data) => {
 crud.delete = file => {
   fs.unlink(`${crud.baseDir}/${file}.txt`, err => {
     if (!err) {
-      email.sendNotification(`${file}.txt are not the droids you are looking for`);
+      email.sendNotification(
+        `${file}.txt are not the droids you are looking for`
+      );
       console.log(
         `Delete Sucess:  ${file}.txt has been obliterated on ${new Date()}`
       );
