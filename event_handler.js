@@ -9,13 +9,13 @@ let myEventHandler = () => {
   handleFile.create("test", `Hello world, it is ${new Date()}`);
   setTimeoutPromise(2000)
     .then(() => handleFile.read("test"))
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
   setTimeoutPromise(2000)
     .then(() => handleFile.update("test", `UPDATED ${new Date()}`))
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
   setTimeoutPromise(5000)
     .then(() => handleFile.delete("test"))
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 };
 
 eventEmitter.on("scream", myEventHandler);
