@@ -1,17 +1,22 @@
-// const handleFile = require('./crud')//?
-// const events = require('events')//?
-// const eventEmitter = new events.EventEmitter()//?
+const handleFile = require('./crud')//?
+const events = require('events')//?
+const eventEmitter = new events.EventEmitter()//?
 
 
-// let myEventHandler = () => {
-//     handleFile.create('test')
-//     handleFile.read('test')
-//     handleFile.update('test')
-//     handleFile.delete('test-updated')
-// }
+let myEventHandler = () => {
+    handleFile.update('test')
+    // handleFile.read('test')
+    // handleFile.update('test')
+    // handleFile.delete('test-updated')
+    //console.log('hello')
+}
 
-// eventEmitter.on('scream', myEventHandler)//?
-// eventEmitter.emit('scream')//?
+eventEmitter.on('scream', myEventHandler)
 
-// module.exports.myEventHandler = myEventHandler//?
-// module.exports.eventEmitter = eventEmitter.emit //?
+const callEmit = () => {
+ return eventEmitter.emit('scream')
+}
+
+module.exports.myEventHandler = myEventHandler
+
+module.exports.callEmit = callEmit
