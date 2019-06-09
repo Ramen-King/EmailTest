@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const email = require("./email");
+const email = require("./nodemailer");
 const { promisify } = require("util");
 const readFile = promisify(fs.readFile);
 

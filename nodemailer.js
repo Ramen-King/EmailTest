@@ -6,13 +6,13 @@ const sendNotification = value => {
       service: "gmail",
       auth: {
         user: "nodetest662019",
-        pass: "Nismo180"
+        pass: ""
       }
     });
   
     let mailOptions = {
       from: "nodetest662019@gmail.com",
-      to: "nodetest662019@gmail.com",
+      to: "yuri.shkoda@codeimmersives.com",
       subject: "Sending Email using Node.js",
       text: ""
     };
@@ -23,4 +23,5 @@ const sendNotification = value => {
       else console.log(`Email sent: ${info.response}`);
     });
 }
+
 module.exports.sendNotification = sendNotification//?
