@@ -1,12 +1,17 @@
-const events = require('events')//?
-const eventEmitter = new events.EventEmitter()//?
+// const handleFile = require('./crud')//?
+// const events = require('events')//?
+// const eventEmitter = new events.EventEmitter()//?
 
-// Create an event handler
-let myEventHandler = () => {
-    console.log('I hear a scream!')
-}
 
-// Assign the even handler to an event
-eventEmitter.on('scream', myEventHandler)//?
-// fire the 'scream' event
-eventEmitter.emit('scream')//?
+// let myEventHandler = () => {
+//     handleFile.create('test')
+//     handleFile.read('test')
+//     handleFile.update('test')
+//     handleFile.delete('test-updated')
+// }
+
+// eventEmitter.on('scream', myEventHandler)//?
+// eventEmitter.emit('scream')//?
+
+// module.exports.myEventHandler = myEventHandler//?
+// module.exports.eventEmitter = eventEmitter.emit //?
