@@ -7,21 +7,16 @@ const crud = {};
 const date = new Date();
 crud.baseDir = path.join(__dirname, "./database");
 
-/**
- * CREATE
- */
 crud.create = (file, data) => {
   fs.open(`${crud.baseDir}/${file}.txt`, "wx", function(error, identifier) {
     if (!error && identifier) {
-
       fs.writeFile(identifier, date, err => {
         if (!err) {
           fs.close(identifier, err => {
             if (err) {
               console.log(err);
             } else {
-                let createdResponse = `${file} has been created on ${date}`
-                sendNotification(createdResponse)
+              sendNotification(`${file} has been created on ${date}`);
               console.log(`Success:  ${file} has been created on ${date}`);
             }
           });
@@ -33,11 +28,6 @@ crud.create = (file, data) => {
   });
 };
 
-//crud.create('test')
-
-/**
- * READ
- */
 crud.read = file => {
   fs.readFile(`${crud.baseDir}/${file}.txt`, "utf8", (err, data) => {
     if (err) {
@@ -47,9 +37,8 @@ crud.read = file => {
     }
   });
 };
-//crud.read('test')
+
 crud.update = (file, data) => {
-  //readFile returns Promise
   readFile(`${crud.baseDir}/${file}.txt`, "utf8").then(finalData => {
     fs.truncate(`${crud.baseDir}/${file}.txt`, error => {
       if (!error) {
@@ -57,7 +46,6 @@ crud.update = (file, data) => {
           if (err) {
             return err;
           }
-          
           sendNotification(`${file} has been updated on ${date} `);
           console.log(`Sucess: ${file} has been updated on ${date} `);
         });
@@ -67,20 +55,11 @@ crud.update = (file, data) => {
     });
   });
 };
-//crud.update('test')
-// crud.create('cars-updated', {'name': 'mercedes', 'price': '$400'})
-// crud.update('cars-updated', {'name': 'toyota', 'price': '$550'})
-//crud.read('cars-updated')
-// crud.update('cars', {'name': 'Tesla', 'price': "$20000"})
 
-/**
- * DELETE
- */
 crud.delete = file => {
   fs.unlink(`${crud.baseDir}/${file}.txt`, err => {
     if (!err) {
-      let deleteResponse = `${file} has been deleted on ${date}`;
-      sendNotification(deleteResponse);
+      sendNotification(`${file} has been deleted on ${date}`);
       console.log(`Notification Sent:  ${file} has been deleted on ${date}`);
     } else {
       return err;
@@ -88,10 +67,7 @@ crud.delete = file => {
   });
 };
 
-
-
-const sendNotification = (value) => {
-   
+const sendNotification = value => {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -99,22 +75,22 @@ const sendNotification = (value) => {
       pass: "Nismo180"
     }
   });
-  
+
   let mailOptions = {
     from: "nodetest662019@gmail.com",
     to: "nodetest662019@gmail.com",
     subject: "Sending Email using Node.js",
     text: ""
   };
-  mailOptions.text = `${value}`
+  mailOptions.text = `${value}`;
 
   transporter.sendMail(mailOptions, function(error, info) {
     if (error) console.log(error);
     else console.log(`Email sent: ${info.response}`);
   });
 };
-//crud.delete('test')
-//crud.create('test')
+//crud.delete('test-updated')
+crud.create("test");
 //crud.read('test')
 //sendNotification('hello')
 //crud.update('test', date);
